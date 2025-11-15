@@ -21,3 +21,25 @@ function toggleFaq(button) {
         faqItem.classList.add('active');
     }
 }
+
+// Intersection Observer for alternating section animations
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section');
+    
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});

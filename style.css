@@ -55,6 +55,51 @@ main {
     margin-bottom: 96px;
 }
 
+section {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Even sections slide in from the right */
+section:nth-child(even) {
+    transform: translateX(100px);
+}
+
+/* When section becomes visible */
+section.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Keep landing section visible initially */
+#landing {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Adjust animation for mobile devices (reduce movement) */
+@media(max-width: 768px) {
+    section {
+        transform: translateX(-50px);
+    }
+    
+    section:nth-child(even) {
+        transform: translateX(50px);
+    }
+}
+
+/* Further reduce for very small screens */
+@media(max-width: 480px) {
+    section {
+        transform: translateX(-30px);
+    }
+    
+    section:nth-child(even) {
+        transform: translateX(30px);
+    }
+}
+
 
 /* 
 
@@ -971,6 +1016,7 @@ STEPS ↓
 }
 
 /* Responsive Design for Testimonials */
+
 @media(max-width: 768px) {
     .testimonials-wrapper {
         flex-direction: column;
@@ -1303,50 +1349,300 @@ MOBILE RESPONSIVENESS ↓
 */
 
 
-@media(max-width: 1280px) {
-    header .row {
-        align-items: flex-end;
+/* 1200px breakpoint */
+
+@media(max-width: 1200px) {
+    .about-us__flexbox {
+        gap: 24px;
+    }
+    
+    .amazing-service__wrapper {
+        grid-template-columns: 36px 1fr 36px 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    
+    .steps-wrapper,
+    .values-wrapper,
+    .testimonials-wrapper {
+        gap: 48px;
+    }
+    
+    .pricing-cards {
+        gap: 24px;
     }
 }
 
-@media (max-width: 1024px) {
+/* 1024px breakpoint */
 
+@media (max-width: 1024px) {
     .btn__menu {
         display: block;
     }
+    
+    .nav__links {
+        display: none;
+    }
+    
     header .row {
         flex-direction: column;
         align-items: center;
     }
+    
+    .about-us__flexbox {
+        flex-direction: column;
+    }
+    
+    .about-us__flex--left,
+    .about-us__flex--right {
+        width: 100%;
+    }
+    
+    .about-us__flex--right-pic {
+        max-width: 100%;
+    }
+    
+    .container__flexbox--quality-work {
+        flex-direction: column;
+    }
+    
+    .container__left-flexbox--quality-work,
+    .container__right-flexbox--quality-work {
+        width: 100%;
+    }
+    
+    .steps-wrapper {
+        flex-direction: column;
+    }
+    
+    .laptop-image {
+        max-width: 100%;
+        min-width: unset;
+    }
+    
+    .values-wrapper {
+        flex-direction: column;
+    }
+    
+    .values-image-container {
+        max-width: 100%;
+        min-width: unset;
+    }
+    
+    .testimonials-wrapper {
+        flex-direction: column;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+    }
+    
     footer {
         padding: 80px 32px;
     }
 }
 
+/* 768px breakpoint */
+
 @media(max-width: 768px) {
-    #quality .row,
-    #values .row {
-        flex-direction: column-reverse;
+    .about-us__flex--left-text {
+        font-size: 32px;
     }
-    #steps .row,
-    #testimonials .row {
+    
+    .container__left-flexbox--heading,
+    .feature-heading,
+    .steps-heading,
+    .values-heading,
+    .pricing-heading,
+    .testimonials-heading,
+    .faqs-heading {
+        font-size: 36px;
+    }
+    
+    .amazing-service__wrapper {
+        grid-template-columns: 36px 1fr;
+        grid-template-rows: repeat(6, auto);
+    }
+    
+    .pricing-cards {
         flex-direction: column;
         align-items: center;
     }
-    #pricing .row {
-        margin-top: 40px;
+    
+    .pricing-card {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .pricing-card--featured {
+        transform: scale(1);
+    }
+    
+    .testimonial-author {
+        flex-direction: column;
+        gap: 24px;
+        align-items: flex-start;
+    }
+    
+    .faq-question {
+        padding: 20px 24px;
+        font-size: 16px;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 0 24px 20px 24px;
+    }
+    
+    .cta-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cta-heading {
+        max-width: 100%;
+    }
+    
+    .cta-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
     }
 }
+
+/* 640px breakpoint */
 
 @media(max-width: 640px) {
     .container {
         padding: 80px 0;
     }
+    
+    section {
+        padding: 0 24px;
+    }
+    
     .nav__logo {
         margin: 8px 0;
         padding-bottom: 4px;
     }
+    
     main {
         margin-bottom: 80px;
+    }
+    
+    .about-us__flex--left-text {
+        font-size: 28px;
+    }
+    
+    .email-fillout {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .email-entry,
+    .email-entry--submit {
+        width: 100%;
+    }
+    
+    .container__left-flexbox--heading,
+    .feature-heading,
+    .steps-heading,
+    .values-heading,
+    .pricing-heading,
+    .testimonials-heading,
+    .faqs-heading {
+        font-size: 28px;
+    }
+    
+    .values-items-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps-inner {
+        padding: 32px 24px;
+    }
+    
+    .cta-container {
+        padding: 48px 32px;
+    }
+    
+    .cta-heading {
+        font-size: 24px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .cta-button {
+        width: 100%;
+    }
+}
+
+/* 480px breakpoint */
+
+@media(max-width: 480px) {
+    section {
+        padding: 0 16px;
+    }
+    
+    .about-us__flex--left-text {
+        font-size: 24px;
+    }
+    
+    .container__left-flexbox--heading,
+    .feature-heading,
+    .steps-heading,
+    .values-heading,
+    .pricing-heading,
+    .testimonials-heading,
+    .faqs-heading {
+        font-size: 24px;
+    }
+    
+    .amazing-service__wrapper {
+        column-gap: 16px;
+        row-gap: 16px;
+    }
+    
+    .amazing-service__head {
+        font-size: 20px;
+    }
+    
+    .steps-inner {
+        padding: 24px 16px;
+    }
+    
+    .step-number {
+        font-size: 28px;
+        min-width: 50px;
+    }
+    
+    .pricing-card-header,
+    .pricing-card-body,
+    .pricing-card-footer {
+        padding: 24px 16px;
+    }
+    
+    .cta-container {
+        padding: 32px 16px;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    footer {
+        padding: 48px 16px;
     }
 }
